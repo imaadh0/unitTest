@@ -22,13 +22,13 @@ jobs:
           java-version: '8'
 
       - name: Build with Maven
-        run: mvn clean install -f unitTest/pom.xml
+        run: mvn clean install
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: java-app
-          path: '${{ github.workspace }}/unitTest/target/*.jar'
+          path: '${{ github.workspace }}/target/*.jar'
 
   test:
     runs-on: windows-latest
@@ -69,4 +69,3 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FE28A8CC4744486ABDB761FBED5CE430 }}
           package: '*.jar'
-
